@@ -1,0 +1,21 @@
+- create a firectory "myapp"
+
+- add a myapp.c file, Makefile.am and configure.ac files
+
+- add a git: git init
+
+- add those files to stage: git add .
+
+- add a destination, ex:
+  git remote add origin ssh://git@10.70.100.86/home/git/route_b
+
+    - on the server side:
+       mkdir /home/git/route_b
+       cd /home/git/route_b
+       git init --bare
+       chown -R git:git /home/git/route_b
+
+- git push --set-upstream origin master
+
+
+https://mender.io/resources/guides-and-whitepapers/_resources/yocto-sdk-quickstart
