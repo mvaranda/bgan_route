@@ -1,4 +1,4 @@
-AC_INIT(route_b,0.1)
+AC_INIT(bgan_route,0.1)
 AM_INIT_AUTOMAKE([foreign])
 AC_PROG_CC
 AC_PROG_INSTALL

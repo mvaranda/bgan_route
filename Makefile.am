@@ -1,3 +1,3 @@
-bin_PROGRAMS = route_b 
-hello_SOURCES = route_b.c
+bin_PROGRAMS = bgan_route 
+hello_SOURCES = bgan_route.c
 
