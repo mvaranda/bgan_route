@@ -1,21 +1,51 @@
-- create a firectory "myapp"
 
-- add a myapp.c file, Makefile.am and configure.ac files
+Using source three
+==================
 
-- add a git: git init
+1- create a directory "myapp"
 
-- add those files to stage: git add .
+2- add a myapp.c file, Makefile.am and configure.ac files
 
-- add a destination, ex:
-  git remote add origin ssh://git@10.70.100.86/home/git/route_b
+3- add a git: git init
+
+4- add those files to stage: git add .
+
+5- add a destination, ex:
+  git remote add origin ssh://git@10.70.100.86/home/git/myapp
 
     - on the server side:
-       mkdir /home/git/route_b
-       cd /home/git/route_b
+       mkdir /home/git/myapp
+       cd /home/git/myapp
        git init --bare
-       chown -R git:git /home/git/route_b
+       chown -R git:git /home/git/myapp
 
-- git push --set-upstream origin master
+6- git push --set-upstream origin master
+
+7- goto yocto source: ~/BDU/rp2
+
+8- set env: source poky-jethro-2.0/oe-init-build-env /home/mvaranda/BDU/rp2/builds/sdr 
+
+9- devtool add myapprecipe <local_path>/myapp
+  NOTE: myapprecipe CAN NOT HAVE UNDERSACORE and maybe must be lowercase
+
+10- add the recipe to image (conf/local.):
+  IMAGE_INSTALL_append = "myapprecipe"
+
+- clear images
+  bitbake -c clear core-image-minimal
+  rm -rf tmp/deploy/images/raspberrypi2/*
+
+- rebuild images
+  bitbake core-image-minimal
+or
+  bitbake core-image-minimal -c populate_sdk_ext
+
+- If you want to see the image you can mount, example:
+  sudo mount tmp/deploy/images/raspberrypi2/your_image_name.rootfs.ext3 /mnt/s1/
+  check if a file is there: sudo find /mnt/s1/ -name route_b
+
+
+
 
 
 https://mender.io/resources/guides-and-whitepapers/_resources/yocto-sdk-quickstart
